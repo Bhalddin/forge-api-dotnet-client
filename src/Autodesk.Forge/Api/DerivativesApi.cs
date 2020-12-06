@@ -59,18 +59,6 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <returns>ApiResponse of Result</returns>
         ApiResponse</*Result*/dynamic> DeleteManifestWithHttpInfo(string urn);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Downloads a selected derivative. To download the file, you need to specify the file’s URN, which you retrieve by calling the [GET {urn}/manifest](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-manifest-GET) endpoint.  Note that the Model Derivative API uses 2 types of URNs. The **design URN** is generated when you upload the source design file to Forge, and is used when calling most of the Model Derivative endpoints. A **derivative URN** is generated for each translated output file format, and is used for downloading the output design files.  You can set the range of bytes that are returned when downloading the derivative, using the range header. 
-        /// </remarks>
-        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
-        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
-        /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
-        /// <returns></returns>
-        void GetDerivativeManifest(string urn, string derivativeUrn, int? range = null);
 
         /// <summary>
         /// 
@@ -82,8 +70,49 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
         /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetDerivativeManifestWithHttpInfo(string urn, string derivativeUrn, int? range = null);
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <returns>System.IO.Stream</returns>
+        /*System.IO.Stream*/
+        dynamic GetDerivativeManifest(string urn, string derivativeUrn, string range = null, string acceptEncoding = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Downloads a selected derivative. To download the file, you need to specify the file’s URN, which you retrieve by calling the [GET {urn}/manifest](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-manifest-GET) endpoint.  Note that the Model Derivative API uses 2 types of URNs. The **design URN** is generated when you upload the source design file to Forge, and is used when calling most of the Model Derivative endpoints. A **derivative URN** is generated for each translated output file format, and is used for downloading the output design files.  You can set the range of bytes that are returned when downloading the derivative, using the range header. 
+        /// </remarks>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <returns>ApiResponse of System.IO.Stream</returns>
+        ApiResponse</*System.IO.Stream*/dynamic> GetDerivativeManifestWithHttpInfo(string urn, string derivativeUrn, string range = null, string acceptEncoding = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns information about the specified derivative. This endpoint returns a set of headers similar to that returned by the Get Derivative endpoint.
+        /// </remarks>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <returns>IDictionary<string, string></returns>
+        IDictionary<string, string> GetDerivativeManifestHeaders(string urn, string derivativeUrn);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns information about the specified derivative. This endpoint returns a set of headers similar to that returned by the Get Derivative endpoint.
+        /// </remarks>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <returns>ApiResponse of System.IO.Stream</returns>
+        ApiResponse</*System.IO.Stream*/dynamic> GetDerivativeManifestHeadersWithHttpInfo(string urn, string derivativeUrn);
+
         /// <summary>
         /// 
         /// </summary>
@@ -108,6 +137,7 @@ namespace Autodesk.Forge
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>ApiResponse of Formats</returns>
         ApiResponse</*Formats*/dynamic> GetFormatsWithHttpInfo(DateTime? ifModifiedSince = null, string acceptEncoding = null);
+
         /// <summary>
         /// 
         /// </summary>
@@ -132,6 +162,7 @@ namespace Autodesk.Forge
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>ApiResponse of Manifest</returns>
         ApiResponse</*Manifest*/dynamic> GetManifestWithHttpInfo(string urn, string acceptEncoding = null);
+
         /// <summary>
         /// 
         /// </summary>
@@ -156,19 +187,6 @@ namespace Autodesk.Forge
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>ApiResponse of Metadata</returns>
         ApiResponse</*Metadata*/dynamic> GetMetadataWithHttpInfo(string urn, string acceptEncoding = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Returns an object tree, i.e., a hierarchical list of objects for a model view.  To call this endpoint you first need to call the [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) endpoint, to determine which model view (object tree and set of properties) to use.  Although most design apps (e.g., Fusion and Inventor) only allow a single model view, some apps (e.g., Revit) allow users to design models with multiple model views (e.g., HVAC, architecture, perspective).  Note that you can only retrieve metadata from an input file that has been translated into an SVF file. 
-        /// </remarks>
-        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
-        /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
-        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
-        /// <returns>Metadata</returns>
-        /*Metadata*/
-        dynamic GetModelviewMetadata(string urn, string guid, string acceptEncoding = null);
 
         /// <summary>
         /// 
@@ -180,21 +198,26 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
-        /// <returns>ApiResponse of Metadata</returns>
-        ApiResponse</*Metadata*/dynamic> GetModelviewMetadataWithHttpInfo(string urn, string guid, string acceptEncoding = null);
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
+        /// <returns>Metadata</returns>
+        /*Metadata*/
+        dynamic GetModelviewMetadata (string urn, string guid, string acceptEncoding = null, bool xAdsForce = false, bool forceget = false);
+
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a list of properties for each object in an object tree. Properties are returned according to object ID and do not follow a hierarchical structure.  The following image displays a typical list of properties for a Revit object:  ![](https://developer.doc.autodesk.com/bPlouYTd/7/_images/Properties.png)  To call this endpoint you need to first call the [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) endpoint, which returns a list of model view (metadata) IDs for a design input model. Select a model view (metadata) ID to use when calling the Get Properties endpoint.  Note that you can only get properties from a design input file that was previously translated into an SVF file. 
+        /// Returns an object tree, i.e., a hierarchical list of objects for a model view.  To call this endpoint you first need to call the [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) endpoint, to determine which model view (object tree and set of properties) to use.  Although most design apps (e.g., Fusion and Inventor) only allow a single model view, some apps (e.g., Revit) allow users to design models with multiple model views (e.g., HVAC, architecture, perspective).  Note that you can only retrieve metadata from an input file that has been translated into an SVF file. 
         /// </remarks>
         /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
-        /// <returns>Metadata</returns>
-        /*Metadata*/
-        dynamic GetModelviewProperties(string urn, string guid, string acceptEncoding = null);
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
+        /// <returns>ApiResponse of Metadata</returns>
+        ApiResponse</*Metadata*/dynamic> GetModelviewMetadataWithHttpInfo(string urn, string guid, string acceptEncoding = null, bool xAdsForce = false, bool forceget = false);
 
         /// <summary>
         /// 
@@ -206,8 +229,29 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="objectid">Object id which you want to query properties for.</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
+        /// <returns>Metadata</returns>
+        /*Metadata*/
+        dynamic GetModelviewProperties (string urn, string guid, string acceptEncoding = null, List<int> objectIds = null, bool xAdsForce = false, bool forceget = false);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns a list of properties for each object in an object tree. Properties are returned according to object ID and do not follow a hierarchical structure.  The following image displays a typical list of properties for a Revit object:  ![](https://developer.doc.autodesk.com/bPlouYTd/7/_images/Properties.png)  To call this endpoint you need to first call the [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) endpoint, which returns a list of model view (metadata) IDs for a design input model. Select a model view (metadata) ID to use when calling the Get Properties endpoint.  Note that you can only get properties from a design input file that was previously translated into an SVF file. 
+        /// </remarks>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="objectid">Object id which you want to query properties for.</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>ApiResponse of Metadata</returns>
-        ApiResponse</*Metadata*/dynamic> GetModelviewPropertiesWithHttpInfo(string urn, string guid, string acceptEncoding = null);
+        ApiResponse</*Metadata*/dynamic> GetModelviewPropertiesWithHttpInfo(string urn, string guid, string acceptEncoding = null, List<int> objectIds = null, bool xAdsForce = false, bool forceget = false);
+
         /// <summary>
         /// 
         /// </summary>
@@ -234,6 +278,7 @@ namespace Autodesk.Forge
         /// <param name="height">The desired height of the thumbnail. Possible values are 100, 200 and 400.  (optional)</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         ApiResponse</*System.IO.Stream*/dynamic> GetThumbnailWithHttpInfo(string urn, int? width = null, int? height = null);
+
         /// <summary>
         /// 
         /// </summary>
@@ -258,7 +303,9 @@ namespace Autodesk.Forge
         /// <param name="xAdsForce">&#x60;true&#x60;: the endpoint replaces previously translated output file types with the newly generated derivatives  &#x60;false&#x60; (default): previously created derivatives are not replaced  (optional, default to false)</param>
         /// <returns>ApiResponse of Job</returns>
         ApiResponse</*Job*/dynamic> TranslateWithHttpInfo(JobPayload job, bool? xAdsForce = null);
+
         #endregion Synchronous Operations
+
         #region Asynchronous Operations
         /// <summary>
         /// 
@@ -281,18 +328,6 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <returns>Task of ApiResponse (Result)</returns>
         System.Threading.Tasks.Task<ApiResponse</*Result*/dynamic>> DeleteManifestAsyncWithHttpInfo(string urn);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Downloads a selected derivative. To download the file, you need to specify the file’s URN, which you retrieve by calling the [GET {urn}/manifest](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-manifest-GET) endpoint.  Note that the Model Derivative API uses 2 types of URNs. The **design URN** is generated when you upload the source design file to Forge, and is used when calling most of the Model Derivative endpoints. A **derivative URN** is generated for each translated output file format, and is used for downloading the output design files.  You can set the range of bytes that are returned when downloading the derivative, using the range header. 
-        /// </remarks>
-        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
-        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
-        /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetDerivativeManifestAsync(string urn, string derivativeUrn, int? range = null);
 
         /// <summary>
         /// 
@@ -304,8 +339,48 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
         /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <returns>Task of System.IO.Stream</returns>
+        System.Threading.Tasks.Task</*System.IO.Stream*/dynamic> GetDerivativeManifestAsync(string urn, string derivativeUrn, string range = null, string acceptEncoding = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Downloads a selected derivative. To download the file, you need to specify the file’s URN, which you retrieve by calling the [GET {urn}/manifest](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-manifest-GET) endpoint.  Note that the Model Derivative API uses 2 types of URNs. The **design URN** is generated when you upload the source design file to Forge, and is used when calling most of the Model Derivative endpoints. A **derivative URN** is generated for each translated output file format, and is used for downloading the output design files.  You can set the range of bytes that are returned when downloading the derivative, using the range header. 
+        /// </remarks>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetDerivativeManifestAsyncWithHttpInfo(string urn, string derivativeUrn, int? range = null);
+        System.Threading.Tasks.Task<ApiResponse</*System.IO.Stream*/dynamic>> GetDerivativeManifestAsyncWithHttpInfo(string urn, string derivativeUrn, string range = null, string acceptEncoding = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns information about the specified derivative. This endpoint returns a set of headers similar to that returned by the Get Derivative endpoint.
+        /// </remarks>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <returns>Task of IDictionary<string, string></returns>
+        System.Threading.Tasks.Task<IDictionary<string, string>> GetDerivativeManifestHeadersAsync(string urn, string derivativeUrn);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns information about the specified derivative. This endpoint returns a set of headers similar to that returned by the Get Derivative endpoint.
+        /// </remarks>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse</*System.IO.Stream*/dynamic>> GetDerivativeManifestHeadersAsyncWithHttpInfo(string urn, string derivativeUrn);
+
         /// <summary>
         /// 
         /// </summary>
@@ -329,6 +404,7 @@ namespace Autodesk.Forge
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>Task of ApiResponse (Formats)</returns>
         System.Threading.Tasks.Task<ApiResponse</*Formats*/dynamic>> GetFormatsAsyncWithHttpInfo(DateTime? ifModifiedSince = null, string acceptEncoding = null);
+
         /// <summary>
         /// 
         /// </summary>
@@ -352,6 +428,7 @@ namespace Autodesk.Forge
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>Task of ApiResponse (Manifest)</returns>
         System.Threading.Tasks.Task<ApiResponse</*Manifest*/dynamic>> GetManifestAsyncWithHttpInfo(string urn, string acceptEncoding = null);
+
         /// <summary>
         /// 
         /// </summary>
@@ -375,18 +452,6 @@ namespace Autodesk.Forge
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>Task of ApiResponse (Metadata)</returns>
         System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetMetadataAsyncWithHttpInfo(string urn, string acceptEncoding = null);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// Returns an object tree, i.e., a hierarchical list of objects for a model view.  To call this endpoint you first need to call the [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) endpoint, to determine which model view (object tree and set of properties) to use.  Although most design apps (e.g., Fusion and Inventor) only allow a single model view, some apps (e.g., Revit) allow users to design models with multiple model views (e.g., HVAC, architecture, perspective).  Note that you can only retrieve metadata from an input file that has been translated into an SVF file. 
-        /// </remarks>
-        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
-        /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
-        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
-        /// <returns>Task of Metadata</returns>
-        System.Threading.Tasks.Task</*Metadata*/dynamic> GetModelviewMetadataAsync(string urn, string guid, string acceptEncoding = null);
 
         /// <summary>
         /// 
@@ -398,20 +463,25 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
-        /// <returns>Task of ApiResponse (Metadata)</returns>
-        System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetModelviewMetadataAsyncWithHttpInfo(string urn, string guid, string acceptEncoding = null);
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
+        /// <returns>Task of Metadata</returns>
+        System.Threading.Tasks.Task</*Metadata*/dynamic> GetModelviewMetadataAsync(string urn, string guid, string acceptEncoding = null, bool xAdsForce = false, bool forceget = false);
+
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
-        /// Returns a list of properties for each object in an object tree. Properties are returned according to object ID and do not follow a hierarchical structure.  The following image displays a typical list of properties for a Revit object:  ![](https://developer.doc.autodesk.com/bPlouYTd/7/_images/Properties.png)  To call this endpoint you need to first call the [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) endpoint, which returns a list of model view (metadata) IDs for a design input model. Select a model view (metadata) ID to use when calling the Get Properties endpoint.  Note that you can only get properties from a design input file that was previously translated into an SVF file. 
+        /// Returns an object tree, i.e., a hierarchical list of objects for a model view.  To call this endpoint you first need to call the [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) endpoint, to determine which model view (object tree and set of properties) to use.  Although most design apps (e.g., Fusion and Inventor) only allow a single model view, some apps (e.g., Revit) allow users to design models with multiple model views (e.g., HVAC, architecture, perspective).  Note that you can only retrieve metadata from an input file that has been translated into an SVF file. 
         /// </remarks>
         /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
-        /// <returns>Task of Metadata</returns>
-        System.Threading.Tasks.Task</*Metadata*/dynamic> GetModelviewPropertiesAsync(string urn, string guid, string acceptEncoding = null);
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
+        /// <returns>Task of ApiResponse (Metadata)</returns>
+        System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetModelviewMetadataAsyncWithHttpInfo(string urn, string guid, string acceptEncoding = null, bool xAdsForce = false, bool forceget = false);
 
         /// <summary>
         /// 
@@ -423,8 +493,28 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="objectid">Object id which you want to query properties for.</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
+        /// <returns>Task of Metadata</returns>
+        System.Threading.Tasks.Task</*Metadata*/dynamic> GetModelviewPropertiesAsync(string urn, string guid, string acceptEncoding = null, List<int> objectIds = null, bool xAdsForce = false, bool forceget = false);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Returns a list of properties for each object in an object tree. Properties are returned according to object ID and do not follow a hierarchical structure.  The following image displays a typical list of properties for a Revit object:  ![](https://developer.doc.autodesk.com/bPlouYTd/7/_images/Properties.png)  To call this endpoint you need to first call the [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) endpoint, which returns a list of model view (metadata) IDs for a design input model. Select a model view (metadata) ID to use when calling the Get Properties endpoint.  Note that you can only get properties from a design input file that was previously translated into an SVF file. 
+        /// </remarks>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="objectid">Object id which you want to query properties for.</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>Task of ApiResponse (Metadata)</returns>
-        System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetModelviewPropertiesAsyncWithHttpInfo(string urn, string guid, string acceptEncoding = null);
+        System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetModelviewPropertiesAsyncWithHttpInfo(string urn, string guid, string acceptEncoding = null, List<int> objectIds = null, bool xAdsForce = false, bool forceget = false);
+
         /// <summary>
         /// 
         /// </summary>
@@ -450,6 +540,7 @@ namespace Autodesk.Forge
         /// <param name="height">The desired height of the thumbnail. Possible values are 100, 200 and 400.  (optional)</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
         System.Threading.Tasks.Task<ApiResponse</*System.IO.Stream*/dynamic>> GetThumbnailAsyncWithHttpInfo(string urn, int? width = null, int? height = null);
+
         /// <summary>
         /// 
         /// </summary>
@@ -473,6 +564,7 @@ namespace Autodesk.Forge
         /// <param name="xAdsForce">&#x60;true&#x60;: the endpoint replaces previously translated output file types with the newly generated derivatives  &#x60;false&#x60; (default): previously created derivatives are not replaced  (optional, default to false)</param>
         /// <returns>Task of ApiResponse (Job)</returns>
         System.Threading.Tasks.Task<ApiResponse</*Job*/dynamic>> TranslateAsyncWithHttpInfo(JobPayload job, bool? xAdsForce = null);
+
         #endregion Asynchronous Operations
     }
 
@@ -481,7 +573,7 @@ namespace Autodesk.Forge
     /// </summary>
     public partial class DerivativesApi : IDerivativesApi
     {
-        private string Base64Decode(string base64EncodedData)
+        private static string Base64Decode(string base64EncodedData)
         {
             string incoming = base64EncodedData.Replace('_', '/').Replace('-', '+');
             switch (base64EncodedData.Length % 4)
@@ -793,10 +885,12 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
         /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
-        /// <returns></returns>
-        public void GetDerivativeManifest(string urn, string derivativeUrn, int? range = null)
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <returns>System.IO.Stream</returns>
+        public /*System.IO.Stream*/dynamic GetDerivativeManifest(string urn, string derivativeUrn, string range = null, string acceptEncoding = null)
         {
-            GetDerivativeManifestWithHttpInfo(urn, derivativeUrn, range);
+            ApiResponse</*System.IO.Stream*/dynamic> localVarResponse = GetDerivativeManifestWithHttpInfo(urn, derivativeUrn, range, acceptEncoding);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -806,8 +900,9 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
         /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GetDerivativeManifestWithHttpInfo(string urn, string derivativeUrn, int? range = null)
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <returns>ApiResponse of System.IO.Stream</returns>
+        public ApiResponse</*System.IO.Stream*/dynamic> GetDerivativeManifestWithHttpInfo(string urn, string derivativeUrn, string range = null, string acceptEncoding = null)
         {
             // verify the required parameter 'urn' is set
             if (urn == null)
@@ -846,6 +941,7 @@ namespace Autodesk.Forge
             if (urn != null) localVarPathParams.Add("urn", Configuration.ApiClient.ParameterToString(urn)); // path parameter
             if (derivativeUrn != null) localVarPathParams.Add("derivativeUrn", Configuration.ApiClient.ParameterToString(derivativeUrn)); // path parameter
             if (range != null) localVarHeaderParams.Add("Range", Configuration.ApiClient.ParameterToString(range)); // header parameter
+            if (acceptEncoding != null) localVarHeaderParams.Add("Accept-Encoding", Configuration.ApiClient.ParameterToString(acceptEncoding)); // header parameter
 
             // authentication (oauth2_access_code) required
             // oauth required
@@ -873,10 +969,9 @@ namespace Autodesk.Forge
                 if (exception != null) throw exception;
             }
 
-
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse</*System.IO.Stream*/dynamic>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                /*(System.IO.Stream)*/ Configuration.ApiClient.Deserialize(localVarResponse, typeof(System.IO.Stream)));
         }
 
         /// <summary>
@@ -886,11 +981,12 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
         /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetDerivativeManifestAsync(string urn, string derivativeUrn, int? range = null)
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <returns>Task of System.IO.Stream</returns>
+        public async System.Threading.Tasks.Task</*System.IO.Stream*/dynamic> GetDerivativeManifestAsync(string urn, string derivativeUrn, string range = null, string acceptEncoding = null)
         {
-            await GetDerivativeManifestAsyncWithHttpInfo(urn, derivativeUrn, range);
-
+            ApiResponse</*System.IO.Stream*/dynamic> localVarResponse = await GetDerivativeManifestAsyncWithHttpInfo(urn, derivativeUrn, range, acceptEncoding);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -900,8 +996,9 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
         /// <param name="range">This is the standard RFC 2616 range request header. It only supports one range specifier per request: 1. Range:bytes&#x3D;0-63 (returns the first 64 bytes) 2. Range:bytes&#x3D;64-127 (returns the second set of 64 bytes) 3. Range:bytes&#x3D;1022- (returns all the bytes from offset 1022 to the end) 4. If the range header is not specified, the whole content is returned.  (optional)</param>
+        /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetDerivativeManifestAsyncWithHttpInfo(string urn, string derivativeUrn, int? range = null)
+        public async System.Threading.Tasks.Task<ApiResponse</*System.IO.Stream*/dynamic>> GetDerivativeManifestAsyncWithHttpInfo(string urn, string derivativeUrn, string range = null, string acceptEncoding = null)
         {
             // verify the required parameter 'urn' is set
             if (urn == null)
@@ -940,6 +1037,7 @@ namespace Autodesk.Forge
             if (urn != null) localVarPathParams.Add("urn", Configuration.ApiClient.ParameterToString(urn)); // path parameter
             if (derivativeUrn != null) localVarPathParams.Add("derivativeUrn", Configuration.ApiClient.ParameterToString(derivativeUrn)); // path parameter
             if (range != null) localVarHeaderParams.Add("Range", Configuration.ApiClient.ParameterToString(range)); // header parameter
+            if (acceptEncoding != null) localVarHeaderParams.Add("Accept-Encoding", Configuration.ApiClient.ParameterToString(acceptEncoding)); // header parameter
 
             // authentication (oauth2_access_code) required
             // oauth required
@@ -968,7 +1066,162 @@ namespace Autodesk.Forge
             }
 
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse</*System.IO.Stream*/dynamic>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                /*(System.IO.Stream)*/ Configuration.ApiClient.Deserialize(localVarResponse, typeof(System.IO.Stream)));
+        }
+
+        /// <summary>
+        /// Returns information about the specified derivative. This endpoint returns a set of headers similar to that returned by the Get Derivative endpoint.
+        /// </summary>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <returns>System.IO.Stream</returns>
+        public IDictionary<string, string> GetDerivativeManifestHeaders(string urn, string derivativeUrn)
+        {
+            ApiResponse</*System.IO.Stream*/dynamic> localVarResponse = GetDerivativeManifestHeadersWithHttpInfo(urn, derivativeUrn);
+            return localVarResponse.Headers;
+        }
+
+        /// <summary>
+        /// Returns information about the specified derivative. This endpoint returns a set of headers similar to that returned by the Get Derivative endpoint.
+        /// </summary>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <returns>ApiResponse of System.IO.Stream</returns>
+        public ApiResponse</*System.IO.Stream*/dynamic> GetDerivativeManifestHeadersWithHttpInfo(string urn, string derivativeUrn)
+        {
+            // verify the required parameter 'urn' is set
+            if (urn == null)
+                throw new ApiException(400, "Missing required parameter 'urn' when calling DerivativesApi->GetDerivativeManifestHeaders");
+            // verify the required parameter 'derivativeUrn' is set
+            if (derivativeUrn == null)
+                throw new ApiException(400, "Missing required parameter 'derivativeUrn' when calling DerivativesApi->GetDerivativeManifestHeaders");
+
+            string region = DerivativesApi.GetBIM360Region(urn);
+
+            var localVarPath = "/modelderivative/v2/" + region + "designdata/{urn}/manifest/{derivativeUrn}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {};
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {};
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            if (urn != null) localVarPathParams.Add("urn", Configuration.ApiClient.ParameterToString(urn)); // path parameter
+            if (derivativeUrn != null) localVarPathParams.Add("derivativeUrn", Configuration.ApiClient.ParameterToString(derivativeUrn)); // path parameter
+
+            // authentication (oauth2_application) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)Configuration.ApiClient.CallApi(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetDerivativeManifestHeaders", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse</*System.IO.Stream*/dynamic>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Returns information about the specified derivative. This endpoint returns a set of headers similar to that returned by the Get Derivative endpoint.
+        /// </summary>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <returns>Task of IDictionary<string, string></returns>
+        public async System.Threading.Tasks.Task<IDictionary<string, string>> GetDerivativeManifestHeadersAsync(string urn, string derivativeUrn)
+        {
+            ApiResponse</*System.IO.Stream*/dynamic> localVarResponse = await GetDerivativeManifestHeadersAsyncWithHttpInfo(urn, derivativeUrn);
+            return localVarResponse.Headers;
+        }
+
+        /// <summary>
+        /// Returns information about the specified derivative. This endpoint returns a set of headers similar to that returned by the Get Derivative endpoint.
+        /// </summary>
+        /// <exception cref="Autodesk.Forge.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
+        /// <param name="derivativeUrn">The URL-encoded URN of the derivatives. The URN is retrieved from the GET :urn/manifest endpoint. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse</*System.IO.Stream*/dynamic>> GetDerivativeManifestHeadersAsyncWithHttpInfo(string urn, string derivativeUrn)
+        {
+            // verify the required parameter 'urn' is set
+            if (urn == null)
+                throw new ApiException(400, "Missing required parameter 'urn' when calling DerivativesApi->GetDerivativeManifestHeaders");
+            // verify the required parameter 'derivativeUrn' is set
+            if (derivativeUrn == null)
+                throw new ApiException(400, "Missing required parameter 'derivativeUrn' when calling DerivativesApi->GetDerivativeManifestHeaders");
+
+            string region = DerivativesApi.GetBIM360Region(urn);
+
+            var localVarPath = "/modelderivative/v2/" + region + "designdata/{urn}/manifest/{derivativeUrn}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new Dictionary<String, String>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {};
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {};
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+
+            // set "format" to json by default
+            // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
+            localVarPathParams.Add("format", "json");
+            if (urn != null) localVarPathParams.Add("urn", Configuration.ApiClient.ParameterToString(urn)); // path parameter
+            if (derivativeUrn != null) localVarPathParams.Add("derivativeUrn", Configuration.ApiClient.ParameterToString(derivativeUrn)); // path parameter
+
+            // authentication (oauth2_application) required
+            // oauth required
+            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse)await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.HEAD, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int)localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetDerivativeManifestHeaders", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse</*System.IO.Stream*/dynamic>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
@@ -1161,7 +1414,7 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
         /// <returns>ApiResponse of Manifest</returns>
-        public ApiResponse< /*Manifest*/dynamic> GetManifestWithHttpInfo(string urn, string acceptEncoding = null)
+        public ApiResponse</*Manifest*/dynamic> GetManifestWithHttpInfo(string urn, string acceptEncoding = null)
         {
             // verify the required parameter 'urn' is set
             if (urn == null)
@@ -1506,10 +1759,12 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>Metadata</returns>
-        public /*Metadata*/dynamic GetModelviewMetadata(string urn, string guid, string acceptEncoding = null)
+        public /*Metadata*/dynamic GetModelviewMetadata(string urn, string guid, string acceptEncoding = null, bool xAdsForce = false, bool forceget = false)
         {
-            ApiResponse</*Metadata*/dynamic> localVarResponse = GetModelviewMetadataWithHttpInfo(urn, guid, acceptEncoding);
+            ApiResponse</*Metadata*/dynamic> localVarResponse = GetModelviewMetadataWithHttpInfo(urn, guid, acceptEncoding, xAdsForce, forceget);
             return localVarResponse.Data;
         }
 
@@ -1520,8 +1775,10 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>ApiResponse of Metadata</returns>
-        public ApiResponse< /*Metadata*/dynamic> GetModelviewMetadataWithHttpInfo(string urn, string guid, string acceptEncoding = null)
+        public ApiResponse< /*Metadata*/dynamic> GetModelviewMetadataWithHttpInfo(string urn, string guid, string acceptEncoding = null, bool xAdsForce = false, bool forceget = false)
         {
             // verify the required parameter 'urn' is set
             if (urn == null)
@@ -1562,6 +1819,10 @@ namespace Autodesk.Forge
             if (urn != null) localVarPathParams.Add("urn", Configuration.ApiClient.ParameterToString(urn)); // path parameter
             if (guid != null) localVarPathParams.Add("guid", Configuration.ApiClient.ParameterToString(guid)); // path parameter
             if (acceptEncoding != null) localVarHeaderParams.Add("Accept-Encoding", Configuration.ApiClient.ParameterToString(acceptEncoding)); // header parameter
+            if ( xAdsForce != false )
+                localVarHeaderParams.Add ("x-ads-force", Configuration.ApiClient.ParameterToString (xAdsForce)); // header parameter
+            if ( forceget != false )
+                localVarQueryParams.Add ("forceget", Configuration.ApiClient.ParameterToString (forceget)); // query parameter
 
             // authentication (oauth2_access_code) required
             // oauth required
@@ -1602,10 +1863,12 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>Task of Metadata</returns>
-        public async System.Threading.Tasks.Task</*Metadata*/dynamic> GetModelviewMetadataAsync(string urn, string guid, string acceptEncoding = null)
+        public async System.Threading.Tasks.Task</*Metadata*/dynamic> GetModelviewMetadataAsync(string urn, string guid, string acceptEncoding = null, bool xAdsForce = false, bool forceget = false)
         {
-            ApiResponse</*Metadata*/dynamic> localVarResponse = await GetModelviewMetadataAsyncWithHttpInfo(urn, guid, acceptEncoding);
+            ApiResponse</*Metadata*/dynamic> localVarResponse = await GetModelviewMetadataAsyncWithHttpInfo(urn, guid, acceptEncoding, xAdsForce, forceget);
             return localVarResponse.Data;
 
         }
@@ -1617,8 +1880,10 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>Task of ApiResponse (Metadata)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetModelviewMetadataAsyncWithHttpInfo(string urn, string guid, string acceptEncoding = null)
+        public async System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetModelviewMetadataAsyncWithHttpInfo(string urn, string guid, string acceptEncoding = null, bool xAdsForce = false, bool forceget = false)
         {
             // verify the required parameter 'urn' is set
             if (urn == null)
@@ -1659,6 +1924,10 @@ namespace Autodesk.Forge
             if (urn != null) localVarPathParams.Add("urn", Configuration.ApiClient.ParameterToString(urn)); // path parameter
             if (guid != null) localVarPathParams.Add("guid", Configuration.ApiClient.ParameterToString(guid)); // path parameter
             if (acceptEncoding != null) localVarHeaderParams.Add("Accept-Encoding", Configuration.ApiClient.ParameterToString(acceptEncoding)); // header parameter
+            if ( xAdsForce != false )
+                localVarHeaderParams.Add ("x-ads-force", Configuration.ApiClient.ParameterToString (xAdsForce)); // header parameter
+            if ( forceget != false )
+                localVarQueryParams.Add ("forceget", Configuration.ApiClient.ParameterToString (forceget)); // query parameter
 
             // authentication (oauth2_access_code) required
             // oauth required
@@ -1699,10 +1968,13 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="objectid">Object id which you want to query properties for.</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>Metadata</returns>
-        public /*Metadata*/dynamic GetModelviewProperties(string urn, string guid, string acceptEncoding = null)
+        public /*Metadata*/dynamic GetModelviewProperties(string urn, string guid, string acceptEncoding = null, List<int> objectIds = null, bool xAdsForce = false, bool forceget = false)
         {
-            ApiResponse</*Metadata*/dynamic> localVarResponse = GetModelviewPropertiesWithHttpInfo(urn, guid, acceptEncoding);
+            ApiResponse</*Metadata*/dynamic> localVarResponse = GetModelviewPropertiesWithHttpInfo(urn, guid, acceptEncoding, objectIds, xAdsForce, forceget);
             return localVarResponse.Data;
         }
 
@@ -1713,8 +1985,11 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="objectid">Object id which you want to query properties for.</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>ApiResponse of Metadata</returns>
-        public ApiResponse< /*Metadata*/dynamic> GetModelviewPropertiesWithHttpInfo(string urn, string guid, string acceptEncoding = null)
+        public ApiResponse< /*Metadata*/dynamic> GetModelviewPropertiesWithHttpInfo(string urn, string guid, string acceptEncoding = null, List<int> objectIds = null, bool xAdsForce = false, bool forceget = false)
         {
             // verify the required parameter 'urn' is set
             if (urn == null)
@@ -1755,10 +2030,16 @@ namespace Autodesk.Forge
             if (urn != null) localVarPathParams.Add("urn", Configuration.ApiClient.ParameterToString(urn)); // path parameter
             if (guid != null) localVarPathParams.Add("guid", Configuration.ApiClient.ParameterToString(guid)); // path parameter
             if (acceptEncoding != null) localVarHeaderParams.Add("Accept-Encoding", Configuration.ApiClient.ParameterToString(acceptEncoding)); // header parameter
+            if ( xAdsForce != false )
+                localVarHeaderParams.Add ("x-ads-force", Configuration.ApiClient.ParameterToString (xAdsForce)); // header parameter
+            if ( forceget != false )
+                localVarQueryParams.Add ("forceget", Configuration.ApiClient.ParameterToString (forceget)); // query parameter
+            if ( objectIds != null )
+                localVarQueryParams.Add ("objectid", Configuration.ApiClient.ParameterToString (objectIds)); // query parameter
 
             // authentication (oauth2_access_code) required
             // oauth required
-            if (!String.IsNullOrEmpty(Configuration.AccessToken))
+            if ( !String.IsNullOrEmpty(Configuration.AccessToken))
             {
                 localVarHeaderParams["Authorization"] = "Bearer " + Configuration.AccessToken;
             }
@@ -1795,10 +2076,13 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="objectid">Object id which you want to query properties for.</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>Task of Metadata</returns>
-        public async System.Threading.Tasks.Task</*Metadata*/dynamic> GetModelviewPropertiesAsync(string urn, string guid, string acceptEncoding = null)
+        public async System.Threading.Tasks.Task</*Metadata*/dynamic> GetModelviewPropertiesAsync(string urn, string guid, string acceptEncoding = null, List<int> objectIds = null, bool xAdsForce = false, bool forceget = false)
         {
-            ApiResponse</*Metadata*/dynamic> localVarResponse = await GetModelviewPropertiesAsyncWithHttpInfo(urn, guid, acceptEncoding);
+            ApiResponse</*Metadata*/dynamic> localVarResponse = await GetModelviewPropertiesAsyncWithHttpInfo(urn, guid, acceptEncoding, objectIds, xAdsForce, forceget);
             return localVarResponse.Data;
 
         }
@@ -1810,8 +2094,11 @@ namespace Autodesk.Forge
         /// <param name="urn">The Base64 (URL Safe) encoded design URN </param>
         /// <param name="guid">Unique model view ID. Call [GET {urn}/metadata](https://developer.autodesk.com/en/docs/model-derivative/v2/reference/http/urn-metadata-GET) to get the ID </param>
         /// <param name="acceptEncoding">If specified with &#x60;gzip&#x60; or &#x60;*&#x60;, content will be compressed and returned in a GZIP format.  (optional)</param>
+        /// <param name="objectid">Object id which you want to query properties for.</param>
+        /// <param name="xAdsForce">If true - force retrieve the object tree even though it failed to be retrieved or got timeout (got 404 with error message) previously.</param>
+        /// <param name="forceget">If true - To force get the large resource even if it exceeded the expected maximum length (20 MB).</param>
         /// <returns>Task of ApiResponse (Metadata)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetModelviewPropertiesAsyncWithHttpInfo(string urn, string guid, string acceptEncoding = null)
+        public async System.Threading.Tasks.Task<ApiResponse</*Metadata*/dynamic>> GetModelviewPropertiesAsyncWithHttpInfo(string urn, string guid, string acceptEncoding = null, List<int> objectIds = null, bool xAdsForce = false, bool forceget = false)
         {
             // verify the required parameter 'urn' is set
             if (urn == null)
@@ -1852,6 +2139,12 @@ namespace Autodesk.Forge
             if (urn != null) localVarPathParams.Add("urn", Configuration.ApiClient.ParameterToString(urn)); // path parameter
             if (guid != null) localVarPathParams.Add("guid", Configuration.ApiClient.ParameterToString(guid)); // path parameter
             if (acceptEncoding != null) localVarHeaderParams.Add("Accept-Encoding", Configuration.ApiClient.ParameterToString(acceptEncoding)); // header parameter
+            if ( xAdsForce != false )
+                localVarHeaderParams.Add ("x-ads-force", Configuration.ApiClient.ParameterToString (xAdsForce)); // header parameter
+            if ( forceget != false )
+                localVarQueryParams.Add ("forceget", Configuration.ApiClient.ParameterToString (forceget)); // query parameter
+            if ( objectIds != null )
+                localVarQueryParams.Add ("objectid", Configuration.ApiClient.ParameterToString (objectIds)); // query parameter
 
             // authentication (oauth2_access_code) required
             // oauth required
